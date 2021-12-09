@@ -31,22 +31,6 @@ fll.web.report.ReportIndex.populateContext(application, session, pageContext);
 
     <h2>Main links</h2>
 
-    <c:if test="${authentication.ref}">
-        <a class="wide"
-            href="<c:url value='/scoreEntry/scoreEntry.jsp?tablet=true&practice=true&showScores=false'/>">Practice
-            round score entry</a>
-
-        <a class="wide" href="scoreEntry/choose-table.jsp">Score
-            Entry - follow this link on the performance score entry
-            computers.</a>
-    </c:if>
-
-    <c:if test="${authentication.judge}">
-        <a class="wide" href="subjective/Auth" target="_subjective">Subjective
-            Judging - follow this link on the subjective judge's
-            electronic devices.</a>
-    </c:if>
-
     <a class="wide" href='display.jsp'>Big Screen Display - follow
         this link on the computer that's used to display scores with the
         projector.</a>
@@ -57,10 +41,13 @@ fll.web.report.ReportIndex.populateContext(application, session, pageContext);
             Judge</a>
     </c:if>
 
+    <c:if test="${authentication.ref}">
+        <a class="wide" href="<c:url value='/ref-index.jsp' />">Ref</a>
+    </c:if>
+
     <c:if test="${authentication.judge}">
         <a class="wide" href="<c:url value='/judge-index.jsp' />">Judge</a>
     </c:if>
-
 
     <c:if test="${authentication.admin}">
         <a class="wide"
@@ -71,52 +58,6 @@ fll.web.report.ReportIndex.populateContext(application, session, pageContext);
     <a class="wide" href="public">Public landing page. A list of
         pages that the public may want to visit if they are allowed to
         connect to the network.</a>
-
-    <c:if test="${authentication.ref and not authentication.admin}">
-        <!-- links for refs -->
-        <a class="wide"
-            href="<c:url value='/report/topScoreReportPerAwardGroup.jsp' />">Top
-            performance scores by award group. This creates a text
-            report of the top regular match play round scores by award
-            group.</a>
-
-        <div class="wide">
-            <form
-                ACTION="<c:url value='/report/performanceRunReport.jsp' />"
-                METHOD='POST'>
-                Show scores for performance run
-                <select name='RunNumber'>
-                    <c:forEach var="index" begin="1"
-                        end="${maxRunNumber}">
-                        <option value='${index }'>${index }</option>
-                    </c:forEach>
-                </select>
-                <input type='submit' value='Show Scores' />
-            </form>
-        </div>
-
-        <div class="wide">
-            <form
-                action="<c:url value='/report/teamPerformanceReport.jsp' />"
-                method='post'>
-                Show performance scores for team
-                <select name='TeamNumber'>
-                    <c:forEach items="${tournamentTeams}" var="team">
-                        <option
-                            value='<c:out value="${team.teamNumber}"/>'>
-                            <c:out value="${team.teamNumber}" /> -
-                            <c:out value="${team.teamName}" />
-                        </option>
-                    </c:forEach>
-                </select>
-                <input type='submit' value='Show Scores' />
-            </form>
-        </div>
-
-        <a class="wide"
-            href="<c:url value='/report/unverifiedRuns.jsp' />">Unverified
-            runs. Unverfied performance runs.</a>
-    </c:if>
 
     <c:if test="${authentication.admin}">
         <h2>Pages for the head computer person</h2>
@@ -176,7 +117,7 @@ fll.web.report.ReportIndex.populateContext(application, session, pageContext);
         <a class="wide" href="developer/index.jsp">Developer page</a>
     </c:if>
 
-    <c:if test="${authentication.ref}">
+    <c:if test="${authentication.admin}">
         <a class="wide"
             href="<c:url value='/scoreEntry/scoreEntry.jsp?tablet=true&practice=true&showScores=true'/>">Practice
             score entry to publish</a>

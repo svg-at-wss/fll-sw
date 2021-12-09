@@ -1,3 +1,15 @@
+Release 16.4.0
+==============
+* #994 - Add the ability to get subjective score sheets by category and award group
+* #999 - Add performance schedules to ref page
+* #997 - Add timestamp to performance reports used by refs
+* #993 - Add award group to the edit award winners page for overall optional awards
+* #1001 - Change button text when selecting team for performance
+* Add page for the refs
+* #886 - Clear redirect session variable once used
+* #992 - fix storing of finalist schedule
+* #991 - handle undefined score in finalist scheduling application
+
 Release 16.3.0
 ==============
 * #975 - Create offline download in subjective application for use when synchronize doesn't work 
